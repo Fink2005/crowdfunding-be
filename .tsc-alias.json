@@ -1,0 +1,7 @@
+{
+  "resolveFullPaths": true,
+  "verbose": false,
+  "replacers": {
+    "@/*": ["./"]
+  }
+}

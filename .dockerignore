@@ -1,0 +1,31 @@
+# Ignore node_modules
+node_modules
+
+# Ignore test files
+**/*.test.js
+**/*.spec.js
+
+# Ignore development dependencies
+.env.local
+.env.development
+
+# Ignore git
+.git
+.gitignore
+
+# Ignore documentation
+*.md
+README.md
+
+# Ignore editor configs
+.vscode
+.idea
+
+# Ignore logs
+logs
+*.log
+npm-debug.log*
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
