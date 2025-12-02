@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  # Redis Cache
+  redis:
+    image: redis:alpine
+    container_name: crowdfunding-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    command: redis-server --requirepass redis123 --appendonly yes
+    volumes:
+      - redis_data:/data
+    networks:
+      - crowdfunding-network
+
+  # RedisInsight (Official Redis GUI - Modern & Beautiful)
+  redisinsight:
+    image: redis/redisinsight:latest
+    container_name: crowdfunding-redisinsight
+    restart: unless-stopped
+    ports:
+      - "5540:5540"
+    volumes:
+      - redisinsight_data:/data
+    depends_on:
+      - redis
+    networks:
+      - crowdfunding-network
+
+volumes:
+  redis_data:
+    driver: local
+  redisinsight_data:
+    driver: local
+
+networks:
+  crowdfunding-network:
+    driver: bridge
