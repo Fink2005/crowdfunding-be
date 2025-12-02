@@ -18,7 +18,6 @@ export class SendTelegramNotificationUseCase implements SendTelegramNotification
       return { success: false, message: "User not found or Telegram not connected" };
     }
 
-    // Send Telegram notification
     try {
       await axios.post(`https://api.telegram.org/bot${env.telegramBotToken}/sendMessage`, {
         chat_id: user.chatId,

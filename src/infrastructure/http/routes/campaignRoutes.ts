@@ -5,6 +5,7 @@ import { GetCampaignMetadataUseCase } from "@/application/use-cases/GetCampaignM
 import { CampaignController } from "@/infrastructure/http/controllers/CampaignController.js";
 import { validateRequest } from "@/infrastructure/http/middlewares/validateRequest";
 import { MongooseCampaignRepository } from "@/infrastructure/persistence/repositories/MongooseCampaignRepository";
+import { MongooseUserRepository } from "@/infrastructure/persistence/repositories/MongooseUserRepository";
 import { Web3UpCampaignMetadataService } from "@/infrastructure/services/Web3StorageCampaignMetadataService";
 import { Router } from "express";
 
@@ -13,9 +14,11 @@ const router = Router();
 // Dependency Injection (Manual)
 const metadataStorageAdapter = new Web3UpCampaignMetadataService();
 const campaignRepository = new MongooseCampaignRepository();
+const userRepository = new MongooseUserRepository();
 const createMetadataUseCase = new CreateCampaignMetadataUseCase(
   metadataStorageAdapter,
-  campaignRepository
+  campaignRepository,
+  userRepository
 );
 
 const getMetadataUseCase = new GetCampaignMetadataUseCase(campaignRepository);
