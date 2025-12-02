@@ -1,6 +1,7 @@
 import { GetTelegramLinkUseCase } from "@/application/use-cases/GetTelegramLinkUseCase";
 import { HandleTelegramWebhookUseCase } from "@/application/use-cases/HandleTelegramWebhookUseCase";
 import { SaveChatIdUseCase } from "@/application/use-cases/SaveChatIdUseCase";
+import { SendTelegramNotificationUseCase } from "@/application/use-cases/SendTelegramNotificationUseCase";
 import { TelegramController } from "@/infrastructure/http/controllers/TelegramController";
 import { MongooseUserRepository } from "@/infrastructure/persistence/repositories/MongooseUserRepository";
 import { Router } from "express";
@@ -12,10 +13,12 @@ const userRepository = new MongooseUserRepository();
 const getTelegramLinkUseCase = new GetTelegramLinkUseCase();
 const saveChatIdUseCase = new SaveChatIdUseCase(userRepository);
 const handleTelegramWebhookUseCase = new HandleTelegramWebhookUseCase(saveChatIdUseCase);
+const sendTelegramNotificationUseCase = new SendTelegramNotificationUseCase(userRepository);
 
 const telegramController = new TelegramController(
   getTelegramLinkUseCase,
-  handleTelegramWebhookUseCase
+  handleTelegramWebhookUseCase,
+  sendTelegramNotificationUseCase
 );
 
 /**
@@ -100,5 +103,68 @@ router.get("/link", (req, res, next) => telegramController.getLink(req, res, nex
  *                   type: string
  */
 router.post("/webhook", (req, res, next) => telegramController.handleWebhook(req, res, next));
+
+/**
+ * @swagger
+ * /telegram/notify:
+ *   post:
+ *     tags:
+ *       - Telegram
+ *     summary: Send notification to user via Telegram
+ *     description: Send a custom notification message to a user's connected Telegram account
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - address
+ *               - message
+ *             properties:
+ *               address:
+ *                 type: string
+ *                 pattern: '^0x[a-fA-F0-9]{40}$'
+ *                 description: Ethereum wallet address of the user
+ *                 example: "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb"
+ *               message:
+ *                 type: string
+ *                 description: Message to send to the user (supports HTML formatting)
+ *                 example: "🎉 <b>Congratulations!</b> Your campaign has received a new contribution!"
+ *     responses:
+ *       200:
+ *         description: Notification sent successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 message:
+ *                   type: string
+ *                   example: "Notification sent successfully"
+ *       400:
+ *         description: Bad request (missing fields, user not found, or Telegram not connected)
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: "Address and message are required"
+ *       500:
+ *         description: Server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
+router.post("/notify", (req, res, next) => telegramController.sendNotification(req, res, next));
 
 export default router;
