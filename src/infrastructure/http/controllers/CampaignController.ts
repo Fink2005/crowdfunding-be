@@ -25,10 +25,12 @@ export class CampaignController {
       const page = parseInt(req.query.page as string) || 1;
       const limit = parseInt(req.query.limit as string) || 10;
 
-      const result = await this.getMetadataUseCase.execute({ page, limit });
+      const {campaigns, currentPage,totalPages} = await this.getMetadataUseCase.execute({ page, limit });
 
       res.status(200).json({
-        result,
+        campaigns,
+        currentPage,
+        totalPages,
       });
     } catch (err: any) {
       console.error("[CampaignController] getMetadata error:", err);

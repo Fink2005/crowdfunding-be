@@ -7,6 +7,6 @@ export interface CampaignRepositoryPort {
     limit: number
   ): Promise<{
     campaigns: CampaignMetadata[];
-    total: number;
+    totalPages: number;
   }>;
 }

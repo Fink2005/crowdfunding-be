@@ -11,6 +11,10 @@ export class GetCampaignMetadataUseCase implements GetCampaignMetadataPort {
     }
     const skip = (page - 1) * limit;
     const result = await this.campaignRepository.get(skip, limit);
-    return result;
+    return {
+      campaigns: result.campaigns,
+      currentPage: page,
+      totalPages: result.totalPages,
+    };
   }
 }
