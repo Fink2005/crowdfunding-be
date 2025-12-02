@@ -26,7 +26,7 @@ export class MongooseUserRepository implements UserRepositoryPort {
   }
 
   async updateChatId(address: string, chatId: string): Promise<void> {
-    await UserModel.updateOne({ address }, { chatId }).exec();
+    await UserModel.findOneAndUpdate({ address }, { chatId }, { upsert: true, new: true }).exec();
   }
 
   async delete(id: string): Promise<void> {
