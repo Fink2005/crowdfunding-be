@@ -14,9 +14,8 @@ export class TelegramController {
       const address = req.query.address as string;
 
       const { url } = await this.getTelegramLinkUseCase.execute(address);
-      console.log(url);
 
-      res.redirect(url);
+      res.status(200).json(url);
     } catch (error) {
       next(error);
     }
