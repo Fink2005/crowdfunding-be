@@ -1,6 +1,6 @@
 import { CreateCampaignMetadataUseCase } from "@/application/use-cases/CreateCampaignMetadataUseCase.js";
-import { GetCampaignMetadataUseCase } from "@/application/use-cases/GetCampaignMetadataUseCase";
 import { GetCampaignMetadataByIdUseCase } from "@/application/use-cases/GetCampaignMetadataByIdUseCase";
+import { GetCampaignMetadataUseCase } from "@/application/use-cases/GetCampaignMetadataUseCase";
 import { NextFunction, Request, Response } from "express";
 
 export class CampaignController {
