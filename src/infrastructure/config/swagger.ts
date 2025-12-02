@@ -117,6 +117,11 @@ const swaggerOptions: swaggerJsdoc.Options = {
           type: "object",
           required: ["title", "description", "creator"],
           properties: {
+            campaignId: {
+              type: "integer",
+              example: 1,
+              description: "On-chain campaign ID",
+            },
             title: {
               type: "string",
               minLength: 1,

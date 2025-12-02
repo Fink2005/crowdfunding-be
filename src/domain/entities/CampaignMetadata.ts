@@ -1,12 +1,10 @@
 export interface CampaignMetadata {
-  id?: string;
+  campaignId: number;
   creator: string;
   title: string;
   ipfsUri?: string;
   cid?: string;
-  campaignId: number;
   description: string;
-  imageUrl?: string;
-  isSyncOnChain?: boolean;
+  imageUrl: string;
   createdAt?: Date;
 }
