@@ -4,6 +4,7 @@ import { CampaignMetadata } from "@/domain/entities/CampaignMetadata";
 export interface GetCampaignMetadataPort {
   execute(input: GetCampaignMetaDataDto): Promise<{
     campaigns: CampaignMetadata[];
-    total: number;
+    currentPage: number;
+    totalPages: number;
   }>;
 }

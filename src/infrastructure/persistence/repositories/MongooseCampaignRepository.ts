@@ -10,13 +10,13 @@ export class MongooseCampaignRepository {
     limit: number
   ): Promise<{
     campaigns: CampaignMetadata[];
-    total: number;
+    totalPages: number;
   }> {
     const campaigns = await CampaignModel.find().skip(skip).limit(limit).lean();
-    const total = await CampaignModel.countDocuments();
+    const totalPages  =  Math.ceil(await CampaignModel.countDocuments() / limit);
     return {
       campaigns,
-      total,
+      totalPages,
     };
   }
 
