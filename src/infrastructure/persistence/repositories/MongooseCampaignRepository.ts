@@ -24,4 +24,11 @@ export class MongooseCampaignRepository {
     const campaign = await CampaignModel.findById(id).lean();
     return campaign;
   }
+
+  async getByCreator(creator: string): Promise<CampaignMetadata[]> {
+    const campaigns = await CampaignModel.find({ 
+      creator: { $regex: new RegExp(`^${creator}$`, 'i') } 
+    }).lean();
+    return campaigns;
+  }
 }

@@ -1,12 +1,14 @@
 import { GetUserByAddressUseCase } from "@/application/use-cases/GetUserByAddressUseCase";
 import { UserController } from "@/infrastructure/http/controllers/UserController";
 import { MongooseUserRepository } from "@/infrastructure/persistence/repositories/MongooseUserRepository";
+import { MongooseCampaignRepository } from "@/infrastructure/persistence/repositories/MongooseCampaignRepository";
 import { Router } from "express";
 
 const router = Router();
 
 const userRepository = new MongooseUserRepository();
-const getUserByAddressUseCase = new GetUserByAddressUseCase(userRepository);
+const campaignRepository = new MongooseCampaignRepository();
+const getUserByAddressUseCase = new GetUserByAddressUseCase(userRepository, campaignRepository);
 const userController = new UserController(getUserByAddressUseCase);
 
 /**
@@ -55,6 +57,23 @@ const userController = new UserController(getUserByAddressUseCase);
  *                     createdAt:
  *                       type: string
  *                       format: date-time
+ *                     campaigns:
+ *                       type: array
+ *                       items:
+ *                         type: object
+ *                         properties:
+ *                           _id:
+ *                             type: string
+ *                           cid:
+ *                             type: string
+ *                           title:
+ *                             type: string
+ *                           description:
+ *                             type: string
+ *                           imageUrl:
+ *                             type: string
+ *                           creator:
+ *                             type: string
  *       400:
  *         description: Wallet address is required
  *       404:

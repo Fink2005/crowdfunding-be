@@ -10,4 +10,5 @@ export interface CampaignRepositoryPort {
     totalPages: number;
   }>;
   getById(id: string): Promise<CampaignMetadata | null>;
+  getByCreator(creator: string): Promise<CampaignMetadata[]>;
 }
