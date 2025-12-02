@@ -1,7 +1,7 @@
 import { GetUserByAddressUseCase } from "@/application/use-cases/GetUserByAddressUseCase";
 import { UserController } from "@/infrastructure/http/controllers/UserController";
-import { MongooseUserRepository } from "@/infrastructure/persistence/repositories/MongooseUserRepository";
 import { MongooseCampaignRepository } from "@/infrastructure/persistence/repositories/MongooseCampaignRepository";
+import { MongooseUserRepository } from "@/infrastructure/persistence/repositories/MongooseUserRepository";
 import { Router } from "express";
 
 const router = Router();

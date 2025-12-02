@@ -13,7 +13,7 @@ export class MongooseCampaignRepository {
     totalPages: number;
   }> {
     const campaigns = await CampaignModel.find().skip(skip).limit(limit).lean();
-    const totalPages  =  Math.ceil(await CampaignModel.countDocuments() / limit);
+    const totalPages = Math.ceil((await CampaignModel.countDocuments()) / limit);
     return {
       campaigns,
       totalPages,
@@ -26,8 +26,8 @@ export class MongooseCampaignRepository {
   }
 
   async getByCreator(creator: string): Promise<CampaignMetadata[]> {
-    const campaigns = await CampaignModel.find({ 
-      creator: { $regex: new RegExp(`^${creator}$`, 'i') } 
+    const campaigns = await CampaignModel.find({
+      creator: { $regex: new RegExp(`^${creator}$`, "i") },
     }).lean();
     return campaigns;
   }
