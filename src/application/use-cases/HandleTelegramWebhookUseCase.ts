@@ -10,6 +10,8 @@ export class HandleTelegramWebhookUseCase implements HandleTelegramWebhookPort {
   async execute(webhook: TelegramWebhookDto): Promise<{ success: boolean }> {
     const { text, chat } = webhook.message;
 
+    console.log(text, chat);
+
     if (!text.startsWith("/start")) {
       return { success: true };
     }
