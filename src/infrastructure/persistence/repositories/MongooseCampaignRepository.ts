@@ -19,4 +19,9 @@ export class MongooseCampaignRepository {
       total,
     };
   }
+
+  async getById(id: string): Promise<CampaignMetadata | null> {
+    const campaign = await CampaignModel.findById(id).lean();
+    return campaign;
+  }
 }

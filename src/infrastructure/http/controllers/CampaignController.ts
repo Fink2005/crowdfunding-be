@@ -1,11 +1,13 @@
 import { CreateCampaignMetadataUseCase } from "@/application/use-cases/CreateCampaignMetadataUseCase.js";
 import { GetCampaignMetadataUseCase } from "@/application/use-cases/GetCampaignMetadataUseCase";
+import { GetCampaignMetadataByIdUseCase } from "@/application/use-cases/GetCampaignMetadataByIdUseCase";
 import { NextFunction, Request, Response } from "express";
 
 export class CampaignController {
   constructor(
     private readonly createMetadataUseCase: CreateCampaignMetadataUseCase,
-    private readonly getMetadataUseCase: GetCampaignMetadataUseCase
+    private readonly getMetadataUseCase: GetCampaignMetadataUseCase,
+    private readonly getMetadataByIdUseCase: GetCampaignMetadataByIdUseCase
   ) {}
 
   async createMetadata(req: Request, res: Response, next: NextFunction): Promise<void> {
@@ -32,6 +34,30 @@ export class CampaignController {
       });
     } catch (err: any) {
       console.error("[CampaignController] getMetadata error:", err);
+      next(err);
+    }
+  }
+
+  async getMetadataById(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { id } = req.params;
+      const result = await this.getMetadataByIdUseCase.execute({ id });
+
+      if (!result) {
+        res.status(404).json({
+          success: false,
+          message: "Campaign not found",
+        });
+        return;
+      }
+
+      res.status(200).json({
+        success: true,
+        message: "Campaign retrieved successfully",
+        data: result,
+      });
+    } catch (err: any) {
+      console.error("[CampaignController] getMetadataById error:", err);
       next(err);
     }
   }

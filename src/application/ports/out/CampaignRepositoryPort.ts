@@ -9,4 +9,5 @@ export interface CampaignRepositoryPort {
     campaigns: CampaignMetadata[];
     total: number;
   }>;
+  getById(id: string): Promise<CampaignMetadata | null>;
 }
