@@ -1,6 +1,5 @@
+import { SubmitQuizDto } from "@/application/dto/SubmitQuizDto";
+
 export interface SubmitQuizPort {
-  execute(input: {
-    address: string;
-    answers: { isCorrect: boolean }[];
-  }): Promise<{ score: number; total: number }>;
+  execute(input: SubmitQuizDto): Promise<{ score: number; total: number }>;
 }

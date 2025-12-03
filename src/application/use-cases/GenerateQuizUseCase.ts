@@ -1,6 +1,7 @@
+import { GenerateQuizPort } from "@/application/ports/in/GenerateQuizPort";
 import { VocabularyRepositoryPort } from "@/application/ports/out/VocabularyRepositoryPort";
 
-export class GenerateQuizUseCase {
+export class GenerateQuizUseCase implements GenerateQuizPort {
   constructor(private vocabularyRepository: VocabularyRepositoryPort) {}
 
   async execute(sourceLang: string, targetLang: string) {
@@ -11,6 +12,7 @@ export class GenerateQuizUseCase {
     );
 
     return words.map((word) => ({
+      wordId: word.id,
       word: word.word,
       answer: word.meaning,
       choices: this.shuffleChoices(word.meaning, words),

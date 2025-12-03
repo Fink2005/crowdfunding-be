@@ -1,20 +1,18 @@
-import {
-  CreateCampaignMetadataDto,
-  CreateCampaignMetadataResponseDto,
-} from "@/application/dto/CreateCampaignMetadataDto.js";
+import { CreateCampaignMetadataDto } from "@/application/dto/CreateCampaignMetadataDto.js";
+import { CreateCampaignMetadataPort } from "@/application/ports/in/CreateCampaignMetadataPort";
 import { CampaignMetadataStorageServicePort } from "@/application/ports/out/CampaignMetadataStoragePort";
 import { CampaignRepositoryPort } from "@/application/ports/out/CampaignRepositoryPort";
 import { UserRepositoryPort } from "@/application/ports/out/UserRepositoryPort";
 import { CampaignMetadata } from "@/domain/entities/CampaignMetadata.js";
 
-export class CreateCampaignMetadataUseCase {
+export class CreateCampaignMetadataUseCase implements CreateCampaignMetadataPort {
   constructor(
     private readonly metadataStorage: CampaignMetadataStorageServicePort,
     private readonly campaignRepository: CampaignRepositoryPort,
     private readonly userRepository: UserRepositoryPort
   ) {}
 
-  async execute(input: CreateCampaignMetadataDto): Promise<CreateCampaignMetadataResponseDto> {
+  async execute(input: CreateCampaignMetadataDto): Promise<CampaignMetadata> {
     const { campaignId, title, description, imageUrl, creator } = input;
     const metadata: CampaignMetadata = {
       campaignId,
@@ -42,6 +40,6 @@ export class CreateCampaignMetadataUseCase {
       imageUrl,
     });
 
-    return { cid, ipfsUrl };
+    return metadata;
   }
 }

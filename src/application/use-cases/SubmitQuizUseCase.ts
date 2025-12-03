@@ -1,8 +1,9 @@
 import { SubmitQuizDto } from "@/application/dto/SubmitQuizDto";
+import { SubmitQuizPort } from "@/application/ports/in/SubmitQuizPort";
 import { QuizRepositoryPort } from "@/application/ports/out/QuizRepositoryPort";
 import { VocabularyRepositoryPort } from "@/application/ports/out/VocabularyRepositoryPort";
 
-export class SubmitQuizUseCase {
+export class SubmitQuizUseCase implements SubmitQuizPort {
   constructor(
     private quizRepository: QuizRepositoryPort,
     private vocabularyRepositoryPort: VocabularyRepositoryPort
