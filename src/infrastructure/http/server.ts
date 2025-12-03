@@ -5,6 +5,7 @@ import campaignRoutes from "@/infrastructure/http/routes/campaignRoutes.js";
 import mediaRoutes from "@/infrastructure/http/routes/mediaRoutes";
 import telegramRoutes from "@/infrastructure/http/routes/telegramRoutes";
 import usersRoutes from "@/infrastructure/http/routes/usersRoutes";
+import vocabularyRoutes from "@/infrastructure/http/routes/vocabularyRoutes";
 import cors from "cors";
 import express from "express";
 import swaggerUi from "swagger-ui-express";
@@ -43,6 +44,7 @@ export function createServer() {
   app.use("/telegram", telegramRoutes);
   app.use("/campaigns", campaignRoutes);
   app.use("/media", mediaRoutes);
+  app.use("/vocabulary", vocabularyRoutes);
 
   // ==========================================
   // Error Handler (Must be last!)
