@@ -1,5 +1,5 @@
 export interface Vocabulary {
-  id: string;
+  _id: string;
   word: string;
   meaning: string;
   sourceLang: string;

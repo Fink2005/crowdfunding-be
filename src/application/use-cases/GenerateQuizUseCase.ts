@@ -12,7 +12,7 @@ export class GenerateQuizUseCase implements GenerateQuizPort {
     );
 
     return words.map((word) => ({
-      wordId: word.id,
+      id: word._id,
       word: word.word,
       answer: word.meaning,
       choices: this.shuffleChoices(word.meaning, words),
