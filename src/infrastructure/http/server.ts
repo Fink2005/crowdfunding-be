@@ -1,5 +1,6 @@
 import { swaggerSpec } from "@/infrastructure/config/swagger.js";
 import { errorHandler } from "@/infrastructure/http/middlewares/errorHandler.js";
+import aiRoutes from "@/infrastructure/http/routes/aiRoutes";
 import campaignRoutes from "@/infrastructure/http/routes/campaignRoutes.js";
 import mediaRoutes from "@/infrastructure/http/routes/mediaRoutes";
 import telegramRoutes from "@/infrastructure/http/routes/telegramRoutes";
@@ -38,6 +39,7 @@ export function createServer() {
   // ==========================================
   // API Routes
   // ==========================================
+  app.use("/ai", aiRoutes);
   app.use("/users", usersRoutes);
   app.use("/telegram", telegramRoutes);
   app.use("/campaigns", campaignRoutes);

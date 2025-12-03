@@ -24,6 +24,7 @@ const env = {
   r2SecretKey: process.env.R2_SECRET_KEY!,
   r2Bucket: process.env.R2_BUCKET!,
   r2AccountId: process.env.R2_ACCOUNT_ID!,
+  geminiApiKey: process.env.GEMINI_API_KEY!,
 };
 
 for (let key in env) {
