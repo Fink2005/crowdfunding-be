@@ -1,4 +1,4 @@
-import { UserRepositoryPort } from "@/application/ports/out/UserRepositoryPort";
+import { UserRepositoryPort } from "@/application/ports/out/user/UserRepositoryPort";
 import { User } from "@/domain/entities/User";
 import { UserModel } from "@/infrastructure/persistence/models/UserModel";
 

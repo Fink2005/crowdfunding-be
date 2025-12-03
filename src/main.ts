@@ -1,4 +1,3 @@
-import redisClient from "@/infrastructure/cache/redis";
 import env from "@/infrastructure/config/env";
 import { createServer } from "@/infrastructure/http/server";
 import { connectDB } from "@/infrastructure/persistence/odm/mongoose";
@@ -7,9 +6,6 @@ async function bootstrap() {
   try {
     // Connect to MongoDB
     await connectDB();
-
-    // Connect to Redis
-    await redisClient.connect();
 
     // Create and start server
     const app = createServer();
@@ -21,13 +17,11 @@ async function bootstrap() {
     // Graceful shutdown
     process.on("SIGINT", async () => {
       console.log("\n⏳ Shutting down gracefully...");
-      await redisClient.disconnect();
       process.exit(0);
     });
 
     process.on("SIGTERM", async () => {
       console.log("\n⏳ Shutting down gracefully...");
-      await redisClient.disconnect();
       process.exit(0);
     });
   } catch (error) {

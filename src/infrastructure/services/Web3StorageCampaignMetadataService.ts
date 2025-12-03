@@ -1,4 +1,4 @@
-import { CampaignMetadataStorageServicePort } from "@/application/ports/out/CampaignMetadataStoragePort";
+import { CampaignMetadataStorageServicePort } from "@/application/ports/out/campaign/CampaignMetadataStoragePort";
 import { CampaignMetadata } from "@/domain/entities/CampaignMetadata";
 import env from "@/infrastructure/config/env";
 

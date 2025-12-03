@@ -1,7 +1,7 @@
 import { TelegramWebhookDto } from "@/application/dto/TelegramWebhookDto";
-import { GetTelegramLinkPort } from "@/application/ports/in/GetTelegramLinkPort";
-import { HandleTelegramWebhookPort } from "@/application/ports/in/HandleTelegramWebhookPort";
-import { SendTelegramNotificationPort } from "@/application/ports/in/SendTelegramNotificationPort";
+import { GetTelegramLinkPort } from "@/application/ports/in/telegram/GetTelegramLinkPort";
+import { HandleTelegramWebhookPort } from "@/application/ports/in/telegram/HandleTelegramWebhookPort";
+import { SendTelegramNotificationPort } from "@/application/ports/in/telegram/SendTelegramNotificationPort";
 import { NextFunction, Request, Response } from "express";
 
 export class TelegramController {

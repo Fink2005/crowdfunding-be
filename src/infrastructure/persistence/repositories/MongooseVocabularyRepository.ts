@@ -1,5 +1,5 @@
-import { CreateVocabularyDto } from "@/application/dto/CreateVocabularyDto";
-import { VocabularyRepositoryPort } from "@/application/ports/out/VocabularyRepositoryPort";
+import { CreateVocabularyDto } from "@/application/dto/vocabulary/CreateVocabularyDto";
+import { VocabularyRepositoryPort } from "@/application/ports/out/vocabulary/VocabularyRepositoryPort";
 import { Vocabulary } from "@/domain/entities/Vocabulary";
 import { VocabularyModel } from "@/infrastructure/persistence/models/VocabularyModel";
 
@@ -12,7 +12,7 @@ export class MongooseVocabularyRepository implements VocabularyRepositoryPort {
   }
   async create(data: CreateVocabularyDto): Promise<Vocabulary> {
     const vocabulary = await VocabularyModel.create(data);
-    return vocabulary.toObject();
+    return vocabulary.toObject() as Vocabulary;
   }
 
   findById(id: string): Promise<Vocabulary | null> {

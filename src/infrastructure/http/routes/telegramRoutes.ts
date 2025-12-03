@@ -1,7 +1,7 @@
-import { GetTelegramLinkUseCase } from "@/application/use-cases/GetTelegramLinkUseCase";
-import { HandleTelegramWebhookUseCase } from "@/application/use-cases/HandleTelegramWebhookUseCase";
-import { SaveChatIdUseCase } from "@/application/use-cases/SaveChatIdUseCase";
-import { SendTelegramNotificationUseCase } from "@/application/use-cases/SendTelegramNotificationUseCase";
+import { GetTelegramLinkUseCase } from "@/application/use-cases/telegram/GetTelegramLinkUseCase";
+import { HandleTelegramWebhookUseCase } from "@/application/use-cases/telegram/HandleTelegramWebhookUseCase";
+import { SaveChatIdUseCase } from "@/application/use-cases/telegram/SaveChatIdUseCase";
+import { SendTelegramNotificationUseCase } from "@/application/use-cases/telegram/SendTelegramNotificationUseCase";
 import { TelegramController } from "@/infrastructure/http/controllers/TelegramController";
 import { MongooseUserRepository } from "@/infrastructure/persistence/repositories/MongooseUserRepository";
 import { Router } from "express";

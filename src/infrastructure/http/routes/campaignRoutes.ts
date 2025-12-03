@@ -1,7 +1,7 @@
-import { CreateCampaignMetadataDtoSchema } from "@/application/dto/CreateCampaignMetadataDto";
-import { CreateCampaignMetadataUseCase } from "@/application/use-cases/CreateCampaignMetadataUseCase.js";
-import { GetCampaignMetadataByIdUseCase } from "@/application/use-cases/GetCampaignMetadataByIdUseCase";
-import { GetCampaignMetadataUseCase } from "@/application/use-cases/GetCampaignMetadataUseCase";
+import { CreateCampaignMetadataDtoSchema } from "@/application/dto/CreateCampaignMetadataDto.js";
+import { CreateCampaignMetadataUseCase } from "@/application/use-cases/campaign/CreateCampaignMetadataUseCase.js";
+import { GetCampaignMetadataByIdUseCase } from "@/application/use-cases/campaign/GetCampaignMetadataByIdUseCase";
+import { GetCampaignMetadataUseCase } from "@/application/use-cases/campaign/GetCampaignMetadataUseCase";
 import { CampaignController } from "@/infrastructure/http/controllers/CampaignController.js";
 import { validateRequest } from "@/infrastructure/http/middlewares/validateRequest";
 import { MongooseCampaignRepository } from "@/infrastructure/persistence/repositories/MongooseCampaignRepository";

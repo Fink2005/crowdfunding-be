@@ -1,4 +1,4 @@
-import { GetUserByAddressUseCase } from "@/application/use-cases/GetUserByAddressUseCase";
+import { GetUserByAddressUseCase } from "@/application/use-cases/user/GetUserByAddressUseCase";
 import { UserController } from "@/infrastructure/http/controllers/UserController";
 import { MongooseCampaignRepository } from "@/infrastructure/persistence/repositories/MongooseCampaignRepository";
 import { MongooseUserRepository } from "@/infrastructure/persistence/repositories/MongooseUserRepository";

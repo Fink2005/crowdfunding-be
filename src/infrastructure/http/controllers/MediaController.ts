@@ -1,4 +1,4 @@
-import { GenerateUploadUrlUseCase } from "@/application/use-cases/GenerateUploadUrlUseCase";
+import { GenerateUploadUrlUseCase } from "@/application/use-cases/media/GenerateUploadUrlUseCase";
 import { NextFunction, Request, Response } from "express";
 
 export class MediaController {
@@ -8,7 +8,7 @@ export class MediaController {
     try {
       const { fileName, fileType } = req.query as { fileName: string; fileType: string };
       const signedUrl = await this.generateUploadUrlUseCase.execute({ fileName, fileType });
-      res.json({ signedUrl });
+      res.json(signedUrl);
     } catch (error) {
       next(error);
     }

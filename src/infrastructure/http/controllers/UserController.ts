@@ -1,4 +1,4 @@
-import { GetUserByAddressUseCase } from "@/application/use-cases/GetUserByAddressUseCase";
+import { GetUserByAddressUseCase } from "@/application/use-cases/user/GetUserByAddressUseCase";
 import { NextFunction, Request, Response } from "express";
 
 export class UserController {

@@ -1,9 +1,9 @@
-import { CreateVocabularyDto } from "@/application/dto/CreateVocabularyDto";
-import { SubmitQuizDto } from "@/application/dto/SubmitQuizDto";
-import { CreateVocabularyUseCase } from "@/application/use-cases/CreateVocabularyUseCase";
-import { GenerateQuizUseCase } from "@/application/use-cases/GenerateQuizUseCase";
-import { GetWordsUseCase } from "@/application/use-cases/GetWordsUseCase";
-import { SubmitQuizUseCase } from "@/application/use-cases/SubmitQuizUseCase";
+import { CreateVocabularyDto } from "@/application/dto/vocabulary/CreateVocabularyDto";
+import { SubmitQuizDto } from "@/application/dto/vocabulary/SubmitQuizDto";
+import { CreateVocabularyUseCase } from "@/application/use-cases/vocabulary/CreateVocabularyUseCase";
+import { GenerateQuizUseCase } from "@/application/use-cases/vocabulary/GenerateQuizUseCase";
+import { GetWordsUseCase } from "@/application/use-cases/vocabulary/GetWordsUseCase";
+import { SubmitQuizUseCase } from "@/application/use-cases/vocabulary/SubmitQuizUseCase";
 import { NextFunction, Request, Response } from "express";
 
 export class VocabularyController {

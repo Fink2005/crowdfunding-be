@@ -1,5 +1,5 @@
-import { SaveQuizResultDto } from "@/application/dto/SaveQuizResultDto";
-import { QuizRepositoryPort } from "@/application/ports/out/QuizRepositoryPort";
+import { SaveQuizResultDto } from "@/application/dto/vocabulary/SaveQuizResultDto";
+import { QuizRepositoryPort } from "@/application/ports/out/vocabulary/QuizRepositoryPort";
 import { QuizResultModel } from "@/infrastructure/persistence/models/QuizResultModel";
 
 export class MongooseQuizRepository implements QuizRepositoryPort {

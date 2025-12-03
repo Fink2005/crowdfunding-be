@@ -1,9 +1,9 @@
-import { CreateVocabularyDtoSchema } from "@/application/dto/CreateVocabularyDto";
-import { SubmitQuizDtoSchema } from "@/application/dto/SubmitQuizDto";
-import { CreateVocabularyUseCase } from "@/application/use-cases/CreateVocabularyUseCase";
-import { GenerateQuizUseCase } from "@/application/use-cases/GenerateQuizUseCase";
-import { GetWordsUseCase } from "@/application/use-cases/GetWordsUseCase";
-import { SubmitQuizUseCase } from "@/application/use-cases/SubmitQuizUseCase";
+import { CreateVocabularyDtoSchema } from "@/application/dto/vocabulary/CreateVocabularyDto";
+import { SubmitQuizDtoSchema } from "@/application/dto/vocabulary/SubmitQuizDto";
+import { CreateVocabularyUseCase } from "@/application/use-cases/vocabulary/CreateVocabularyUseCase";
+import { GenerateQuizUseCase } from "@/application/use-cases/vocabulary/GenerateQuizUseCase";
+import { GetWordsUseCase } from "@/application/use-cases/vocabulary/GetWordsUseCase";
+import { SubmitQuizUseCase } from "@/application/use-cases/vocabulary/SubmitQuizUseCase";
 import { VocabularyController } from "@/infrastructure/http/controllers/VocabularyController";
 import { validateRequest } from "@/infrastructure/http/middlewares/validateRequest";
 import { MongooseQuizRepository } from "@/infrastructure/persistence/repositories/MongooseQuizRepository";

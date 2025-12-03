@@ -1,7 +1,7 @@
-import { CreateCampaignMetadataUseCase } from "@/application/use-cases/CreateCampaignMetadataUseCase.js";
-import { GetCampaignMetadataByIdUseCase } from "@/application/use-cases/GetCampaignMetadataByIdUseCase";
+import { CreateCampaignMetadataUseCase } from "@/application/use-cases/campaign/CreateCampaignMetadataUseCase.js";
+import { GetCampaignMetadataByIdUseCase } from "@/application/use-cases/campaign/GetCampaignMetadataByIdUseCase";
 
-import { GetCampaignMetadataUseCase } from "@/application/use-cases/GetCampaignMetadataUseCase";
+import { GetCampaignMetadataUseCase } from "@/application/use-cases/campaign/GetCampaignMetadataUseCase";
 import { NextFunction, Request, Response } from "express";
 
 export class CampaignController {
@@ -28,7 +28,10 @@ export class CampaignController {
       const page = parseInt(req.query.page as string) || 1;
       const limit = parseInt(req.query.limit as string) || 10;
 
-      const {campaigns, currentPage,totalPages} = await this.getMetadataUseCase.execute({ page, limit });
+      const { campaigns, currentPage, totalPages } = await this.getMetadataUseCase.execute({
+        page,
+        limit,
+      });
 
       res.status(200).json({
         campaigns,
