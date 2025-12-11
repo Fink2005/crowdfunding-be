@@ -1,4 +1,4 @@
-import { CreateCampaignMetadataDto } from "@/application/dto/CreateCampaignMetadataDto";
+import { CreateCampaignMetadataDto } from "@/application/dto/campaign/CreateCampaignMetadataDto";
 import { CreateCampaignMetadataPort } from "@/application/ports/in/campaign/CreateCampaignMetadataPort";
 import { CampaignMetadataStorageServicePort } from "@/application/ports/out/campaign/CampaignMetadataStoragePort";
 import { CampaignRepositoryPort } from "@/application/ports/out/campaign/CampaignRepositoryPort";

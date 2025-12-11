@@ -1,4 +1,4 @@
-import { CreateCampaignMetadataDto } from "@/application/dto/CreateCampaignMetadataDto";
+import { CreateCampaignMetadataDto } from "@/application/dto/campaign/CreateCampaignMetadataDto";
 import { CampaignMetadata } from "@/domain/entities/CampaignMetadata";
 
 export interface CreateCampaignMetadataPort {

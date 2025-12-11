@@ -1,4 +1,4 @@
-import { CreateCampaignMetadataDtoSchema } from "@/application/dto/CreateCampaignMetadataDto.js";
+import { CreateCampaignMetadataDtoSchema } from "@/application/dto/campaign/CreateCampaignMetadataDto.js";
 import { CreateCampaignMetadataUseCase } from "@/application/use-cases/campaign/CreateCampaignMetadataUseCase.js";
 import { GetCampaignMetadataByIdUseCase } from "@/application/use-cases/campaign/GetCampaignMetadataByIdUseCase";
 import { GetCampaignMetadataUseCase } from "@/application/use-cases/campaign/GetCampaignMetadataUseCase";

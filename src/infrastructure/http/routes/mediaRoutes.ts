@@ -1,4 +1,4 @@
-import { GenerateUploadUrlDtoSchema } from "@/application/dto/GenerateUploadUrlDto";
+import { GenerateUploadUrlDtoSchema } from "@/application/dto/media/GenerateUploadUrlDto";
 import { GenerateUploadUrlUseCase } from "@/application/use-cases/media/GenerateUploadUrlUseCase";
 import { MediaController } from "@/infrastructure/http/controllers/MediaController";
 import { validateQuery } from "@/infrastructure/http/middlewares/validateRequest";

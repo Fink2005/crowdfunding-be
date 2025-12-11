@@ -1,4 +1,4 @@
-import { TelegramWebhookDto } from "@/application/dto/TelegramWebhookDto";
+import { TelegramWebhookDto } from "@/application/dto/telegram/TelegramWebhookDto";
 import { GetTelegramLinkPort } from "@/application/ports/in/telegram/GetTelegramLinkPort";
 import { HandleTelegramWebhookPort } from "@/application/ports/in/telegram/HandleTelegramWebhookPort";
 import { SendTelegramNotificationPort } from "@/application/ports/in/telegram/SendTelegramNotificationPort";
