@@ -4,18 +4,16 @@ import { Vocabulary } from "@/domain/entities/Vocabulary";
 import { VocabularyModel } from "@/infrastructure/persistence/models/VocabularyModel";
 
 export class MongooseVocabularyRepository implements VocabularyRepositoryPort {
-  async deleteMany(): Promise<void> {
-    await VocabularyModel.deleteMany({});
-  }
-  async insertMany(vocabularies: Vocabulary[]): Promise<void> {
-    await VocabularyModel.insertMany(vocabularies);
-  }
   async create(data: CreateVocabularyDto): Promise<Vocabulary> {
     const vocabulary = await VocabularyModel.create(data);
     return vocabulary.toObject() as Vocabulary;
   }
 
-  findById(id: string): Promise<Vocabulary | null> {
+  async findAll(): Promise<Vocabulary[]> {
+    return VocabularyModel.find().lean();
+  }
+
+  async findById(id: string): Promise<Vocabulary | null> {
     return VocabularyModel.findById(id).lean();
   }
 
@@ -28,5 +26,21 @@ export class MongooseVocabularyRepository implements VocabularyRepositoryPort {
       { $match: { sourceLang, targetLang } },
       { $sample: { size: limit } },
     ]);
+  }
+
+  async update(id: string, data: Partial<Vocabulary>): Promise<Vocabulary | null> {
+    return VocabularyModel.findByIdAndUpdate(id, data, { new: true }).lean();
+  }
+
+  async delete(id: string): Promise<void> {
+    await VocabularyModel.findByIdAndDelete(id);
+  }
+
+  async deleteMany(): Promise<void> {
+    await VocabularyModel.deleteMany({});
+  }
+
+  async insertMany(vocabularies: Vocabulary[]): Promise<void> {
+    await VocabularyModel.insertMany(vocabularies);
   }
 }

@@ -287,9 +287,4 @@ const swaggerOptions: swaggerJsdoc.Options = {
   apis: [join(__dirname, "../http/routes/*.ts"), join(__dirname, "../http/routes/*.js")],
 };
 
-console.log("📂 Swagger scanning paths:", swaggerOptions.apis);
 export const swaggerSpec = swaggerJsdoc(swaggerOptions);
-console.log(
-  "📚 Swagger spec generated. Paths found:",
-  Object.keys((swaggerSpec as any).paths || {})
-);

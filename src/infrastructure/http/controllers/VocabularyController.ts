@@ -1,14 +1,21 @@
 import { CreateVocabularyDto } from "@/application/dto/vocabulary/CreateVocabularyDto";
 import { SubmitQuizDto } from "@/application/dto/vocabulary/SubmitQuizDto";
+import { UpdateVocabularyDto } from "@/application/dto/vocabulary/UpdateVocabularyDto";
 import { CreateVocabularyUseCase } from "@/application/use-cases/vocabulary/CreateVocabularyUseCase";
+import { DeleteVocabularyUseCase } from "@/application/use-cases/vocabulary/DeleteVocabularyUseCase";
 import { GenerateQuizUseCase } from "@/application/use-cases/vocabulary/GenerateQuizUseCase";
+import { GetAllVocabularyUseCase } from "@/application/use-cases/vocabulary/GetAllVocabularyUseCase";
 import { GetWordsUseCase } from "@/application/use-cases/vocabulary/GetWordsUseCase";
 import { SubmitQuizUseCase } from "@/application/use-cases/vocabulary/SubmitQuizUseCase";
+import { UpdateVocabularyUseCase } from "@/application/use-cases/vocabulary/UpdateVocabularyUseCase";
 import { NextFunction, Request, Response } from "express";
 
 export class VocabularyController {
   constructor(
     private readonly createVocabularyUseCase: CreateVocabularyUseCase,
+    private readonly getAllVocabularyUseCase: GetAllVocabularyUseCase,
+    private readonly updateVocabularyUseCase: UpdateVocabularyUseCase,
+    private readonly deleteVocabularyUseCase: DeleteVocabularyUseCase,
     private readonly getWordsUseCase: GetWordsUseCase,
     private readonly generateQuizUseCase: GenerateQuizUseCase,
     private readonly submitQuizUseCase: SubmitQuizUseCase
@@ -88,6 +95,59 @@ export class VocabularyController {
         success: true,
         message: "Vocabulary created successfully",
         data: vocabulary,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async getAllVocabulary(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const vocabularies = await this.getAllVocabularyUseCase.execute();
+
+      res.status(200).json({
+        success: true,
+        data: vocabularies,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async updateVocabulary(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { id } = req.params;
+      const data: UpdateVocabularyDto = req.body;
+
+      const vocabulary = await this.updateVocabularyUseCase.execute(id, data);
+
+      if (!vocabulary) {
+        res.status(404).json({
+          success: false,
+          message: "Vocabulary not found",
+        });
+        return;
+      }
+
+      res.status(200).json({
+        success: true,
+        message: "Vocabulary updated successfully",
+        data: vocabulary,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async deleteVocabulary(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { id } = req.params;
+
+      await this.deleteVocabularyUseCase.execute(id);
+
+      res.status(200).json({
+        success: true,
+        message: "Vocabulary deleted successfully",
       });
     } catch (error) {
       next(error);
