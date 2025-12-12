@@ -5,7 +5,7 @@ import path from "path";
 // Only load .env file in development (production uses Docker env vars)
 if (process.env.NODE_ENV !== "production") {
   dotenv.config();
-  
+
   if (!fs.existsSync(path.resolve(".env"))) {
     throw new Error(".env file not found!");
   }
@@ -18,9 +18,6 @@ const env = {
   rpcWss: process.env.RPC_WSS!,
   rpcHttp: process.env.RPC_HTTP!,
   contractAddress: process.env.CONTRACT_ADDRESS!,
-  redisHost: process.env.REDIS_HOST!,
-  redisPort: process.env.REDIS_PORT!,
-  redisPassword: process.env.REDIS_PASSWORD!,
   telegramBotToken: process.env.TELEGRAM_BOT_TOKEN!,
   telegramBotName: process.env.TELEGRAM_BOT_NAME!,
   w3upEmail: process.env.W3UP_EMAIL!,
