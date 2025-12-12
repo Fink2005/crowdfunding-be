@@ -1,10 +1,14 @@
 import dotenv from "dotenv";
 import fs from "fs";
 import path from "path";
-dotenv.config();
 
-if (process.env.NODE_ENV !== "production" && !fs.existsSync(path.resolve(".env"))) {
-  throw new Error(".env file not found!");
+// Only load .env file in development (production uses Docker env vars)
+if (process.env.NODE_ENV !== "production") {
+  dotenv.config();
+  
+  if (!fs.existsSync(path.resolve(".env"))) {
+    throw new Error(".env file not found!");
+  }
 }
 
 const env = {
